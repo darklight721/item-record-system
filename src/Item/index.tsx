@@ -68,7 +68,9 @@ export default function ItemComponent({
             </>
           ) : (
             <>
-              <button disabled={dirty && !isValid}>Save</button>
+              <button disabled={dirty && !isValid} type="submit">
+                Save
+              </button>
               {item && <Link to={`/${item.id}`}>Cancel</Link>}
             </>
           )}
