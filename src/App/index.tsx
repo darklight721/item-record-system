@@ -12,7 +12,7 @@ export default function App() {
   }, [items])
 
   return (
-    <div className="mx-auto my-24 max-w-2xl overflow-hidden rounded-md bg-white shadow">
+    <div className="mx-auto my-24 flex h-96 max-w-2xl flex-col overflow-hidden rounded-md bg-white shadow">
       <header className="flex items-center justify-between p-3 shadow">
         <Link
           to="/"
@@ -53,8 +53,8 @@ export default function App() {
           </NavLink>
         </nav>
       </header>
-      <main className="flex">
-        <section className="w-2/5 shadow">
+      <main className="flex min-h-0 flex-1 items-stretch">
+        <section className="h-full w-2/5 shadow-inner">
           <List items={items} />
         </section>
         <section className="flex-1">

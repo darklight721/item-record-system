@@ -20,29 +20,31 @@ export default function List({ items }: Props) {
   const match = useMatch({ path: '/', end: true })
 
   return (
-    <div>
-      <div className="relative m-3">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute left-3 top-2.5 h-5 w-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" />
-          <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a4 4 0 00-3.446 6.032l-2.261 2.26a1 1 0 101.414 1.415l2.261-2.261A4 4 0 1011 5z"
-            clipRule="evenodd"
+    <div className="flex h-full flex-col">
+      <div className="p-3 shadow-sm">
+        <div className="relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="absolute left-3 top-2.5 h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" />
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a4 4 0 00-3.446 6.032l-2.261 2.26a1 1 0 101.414 1.415l2.261-2.261A4 4 0 1011 5z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <input
+            className="w-full rounded-3xl bg-gray-100 py-2 pl-10 pr-3 focus:outline-blue-600"
+            type="search"
+            value={filter}
+            onChange={e => setFilter(e.target.value)}
           />
-        </svg>
-        <input
-          className="w-full rounded-3xl bg-gray-100 py-2 pl-10 pr-3 focus:outline-blue-600"
-          type="search"
-          value={filter}
-          onChange={e => setFilter(e.target.value)}
-        />
+        </div>
       </div>
-      <ul className="divide-y">
+      <ul className="flex-1 divide-y divide-gray-100 overflow-y-auto">
         {filteredItems.map(item => (
           <li key={item.id}>
             <NavLink
