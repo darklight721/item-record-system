@@ -4,6 +4,8 @@ import sortBy from 'lodash.sortby'
 import { format } from 'date-fns'
 import type { Item } from '../store'
 import { DATE_FORMAT } from '../Item'
+import Icon from '../Icon'
+import Avatar from '../Avatar'
 
 type Props = {
   items: Item[]
@@ -20,24 +22,12 @@ export default function List({ items }: Props) {
   const match = useMatch({ path: '/', end: true })
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="p-3 shadow-sm">
+    <div>
+      <div className="sticky top-0 border-b border-b-gray-100 bg-white p-3">
         <div className="relative">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="absolute left-3 top-2.5 h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M9 9a2 2 0 114 0 2 2 0 01-4 0z" />
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a4 4 0 00-3.446 6.032l-2.261 2.26a1 1 0 101.414 1.415l2.261-2.261A4 4 0 1011 5z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <Icon className="absolute left-3 top-2.5" name="search" />
           <input
-            className="w-full rounded-3xl bg-gray-100 py-2 pl-10 pr-3 focus:outline-blue-600"
+            className="w-full rounded-3xl bg-gray-100 py-2 pl-10 pr-3 shadow-inner focus:outline-blue-600"
             type="search"
             value={filter}
             onChange={e => setFilter(e.target.value)}
@@ -55,17 +45,7 @@ export default function List({ items }: Props) {
               }
               to={item.id}
             >
-              {item.image ? (
-                <img
-                  className="h-12 w-12 rounded-full object-cover"
-                  src={item.image}
-                  alt={item.name}
-                />
-              ) : (
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 uppercase text-black">
-                  {item.name[0]}
-                </div>
-              )}
+              <Avatar name={item.name} image={item.image} />
               <div>
                 {item.name}
                 <div className="text-sm">{format(item.date, DATE_FORMAT)}</div>

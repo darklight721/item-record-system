@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, Route, Routes } from 'react-router-dom'
+import Icon from '../Icon'
 import Item from '../Item'
 import List from '../List'
 import { getItems, saveItems } from '../store'
@@ -12,20 +13,13 @@ export default function App() {
   }, [items])
 
   return (
-    <div className="mx-auto my-24 flex h-96 max-w-2xl flex-col overflow-hidden rounded-md bg-white shadow">
-      <header className="flex items-center justify-between p-3 shadow">
+    <div className="mx-auto my-24 flex h-96 max-w-2xl flex-col divide-y-4 divide-gray-100 overflow-hidden rounded-md bg-white shadow">
+      <header className="flex items-center justify-between p-3">
         <Link
           to="/"
           className="flex items-center text-lg font-semibold hover:text-blue-500 active:text-blue-600"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="mr-2 h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
-          </svg>
+          <Icon className="mr-2" name="collection" />
           Item Record System
         </Link>
         <nav>
@@ -37,27 +31,16 @@ export default function App() {
               }`
             }
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="mr-1 h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <Icon className="mr-1" name="plus" />
             New
           </NavLink>
         </nav>
       </header>
-      <main className="flex min-h-0 flex-1 items-stretch">
-        <section className="h-full w-2/5 shadow-inner">
+      <main className="flex min-h-0 flex-1 items-stretch divide-x-4 divide-gray-100">
+        <section className="h-full w-2/5 overflow-y-auto">
           <List items={items} />
         </section>
-        <section className="flex-1">
+        <section className="h-full flex-1 overflow-y-auto">
           <Routes>
             <Route
               path="new"
@@ -69,23 +52,14 @@ export default function App() {
               path=":itemId"
               element={
                 <Item
-                  readonly
-                  getItem={id => items.find(i => i.id === id)}
-                  removeItem={item =>
-                    setItems(prev => prev.filter(i => i.id !== item.id))
-                  }
-                />
-              }
-            />
-            <Route
-              path=":itemId/edit"
-              element={
-                <Item
                   getItem={id => items.find(i => i.id === id)}
                   saveItem={item =>
                     setItems(prev =>
                       prev.map(i => (i.id === item.id ? item : i))
                     )
+                  }
+                  removeItem={item =>
+                    setItems(prev => prev.filter(i => i.id !== item.id))
                   }
                 />
               }
