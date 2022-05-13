@@ -24,7 +24,13 @@ export default function ItemComponent({
   const navigate = useNavigate()
   const item = itemId ? getItem?.(itemId) : undefined
 
-  if (itemId && !item) return <div>Not found :(</div>
+  if (itemId && !item)
+    return (
+      <div className="flex h-full w-full flex-col items-center justify-center p-3 text-lg">
+        <Icon name="exclamation" />
+        <p>Not found :(</p>
+      </div>
+    )
 
   return (
     <Formik
@@ -68,7 +74,7 @@ export default function ItemComponent({
             />
             {(values.name || values.image) && (
               <Avatar
-                className="h-52 w-full rounded-lg"
+                className="h-52 w-full rounded-lg text-2xl"
                 imgClassName="object-contain"
                 name={values.name}
                 image={values.image}
