@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Navigate, NavLink, useMatch } from 'react-router-dom'
+import { Link, Navigate, NavLink, useMatch } from 'react-router-dom'
 import sortBy from 'lodash.sortby'
 import { format } from 'date-fns'
 import type { Item } from '../store'
@@ -23,24 +23,36 @@ export default function List({ items }: Props) {
 
   return (
     <div>
-      <div className="sticky top-0 border-b border-b-gray-100 bg-white p-3">
+      <header className="bg-teal-900 p-4">
+        <Link
+          to="/"
+          className="flex items-center text-lg font-semibold tracking-wide text-white hover:opacity-80 active:opacity-60"
+        >
+          <Icon className="mr-2" name="collection" />
+          Item Record System
+        </Link>
+      </header>
+      <div className="sticky top-0 bg-teal-600 p-4">
         <div className="relative">
-          <Icon className="absolute left-3 top-2.5" name="search" />
+          <div className="absolute inset-y-0 left-0 z-10 flex items-center pl-3">
+            <Icon className="text-teal-900" name="search" />
+          </div>
           <input
-            className="w-full rounded-3xl bg-gray-100 py-2 pl-10 pr-3 shadow-inner focus:outline-blue-600"
+            className="w-full rounded-3xl bg-teal-700 py-2 pl-10 pr-3 text-white opacity-90 shadow-inner placeholder:text-white placeholder:opacity-75 focus:opacity-100 focus:outline-teal-600"
             type="search"
+            placeholder="Search items"
             value={filter}
             onChange={e => setFilter(e.target.value)}
           />
         </div>
       </div>
-      <ul className="flex-1 divide-y divide-gray-100 overflow-y-auto">
+      <ul className="space-y-1">
         {filteredItems.map(item => (
           <li key={item.id}>
             <NavLink
               className={({ isActive }) =>
-                `flex items-center space-x-3 px-3 py-2 hover:bg-blue-500 hover:text-white ${
-                  isActive ? 'bg-blue-600 text-white' : ''
+                `flex items-center space-x-3 px-4 py-2 text-white hover:bg-teal-700 ${
+                  isActive ? 'bg-teal-700' : ''
                 }`
               }
               to={item.id}
@@ -48,7 +60,10 @@ export default function List({ items }: Props) {
               <Avatar name={item.name} image={item.image} />
               <div>
                 {item.name}
-                <div className="text-sm">{format(item.date, DATE_FORMAT)}</div>
+                <div className="flex items-center text-sm opacity-75">
+                  <Icon className="mr-1 h-4 w-4" name="calendar" />
+                  {format(item.date, DATE_FORMAT)}
+                </div>
               </div>
             </NavLink>
           </li>

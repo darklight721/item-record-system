@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react'
+import styles from './index.module.css'
 
 type Props = {
   className?: string
-  imgClassName?: string
   name: string
   image: string
 }
 
 export default function Avatar({
-  className = 'h-12 w-12 rounded-full',
-  imgClassName = 'object-cover',
+  className = 'h-12 w-12 rounded-full text-sm',
   name,
   image
 }: Props) {
@@ -20,10 +19,12 @@ export default function Avatar({
   }, [image])
 
   return (
-    <div className={`overflow-hidden bg-gray-200 ${className}`}>
+    <div
+      className={`overflow-hidden shadow-inner ${styles.container} ${className}`}
+    >
       {image && (
         <img
-          className={`h-full w-full ${imgClassName} ${
+          className={`h-full w-full object-cover ${
             loaded ? 'block' : 'hidden'
           }`}
           onLoad={() => setLoaded(true)}
@@ -32,7 +33,7 @@ export default function Avatar({
         />
       )}
       {!loaded && (
-        <div className="flex h-full w-full items-center justify-center uppercase text-black">
+        <div className="flex h-full w-full items-center justify-center font-bold uppercase text-teal-900">
           {name[0]}
         </div>
       )}

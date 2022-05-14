@@ -31,7 +31,7 @@ export default function Field({
             ...field,
             id: name,
             className: `w-full py-2 px-3 bg-gray-100 rounded-md shadow-inner ${
-              hasError ? 'focus:outline-red-600' : 'focus:outline-blue-600'
+              hasError ? 'focus:outline-red-600' : 'focus:outline-teal-600'
             }`
           },
           helpers

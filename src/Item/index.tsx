@@ -43,64 +43,47 @@ export default function ItemComponent({
       }}
     >
       {({ values, dirty, isValid }) => (
-        <Form>
-          <div className="space-y-2 p-3">
-            <Field name="name" label="Name" />
-            <Field
-              name="date"
-              label="Date"
-              renderInput={(props, helpers) => (
-                <DatePicker
-                  id={props.id}
-                  className={props.className}
-                  dateFormat={DATE_FORMAT}
-                  selected={props.value}
-                  onChange={(date: Date) => helpers.setValue(date)}
-                  onBlur={() => helpers.setTouched(true)}
-                />
-              )}
+        <Form className="flex h-full flex-col">
+          <div className="flex-1 overflow-y-auto">
+            <Avatar
+              className="h-48 w-full text-2xl"
+              name={values.name}
+              image={values.image}
             />
-            <Field
-              name="description"
-              label="Description"
-              renderInput={({ className, ...props }) => (
-                <textarea {...props} className={`${className} h-full`} />
-              )}
-            />
-            <Field
-              name="image"
-              label="Image"
-              renderInput={props => <input {...props} type="url" />}
-            />
-            {(values.name || values.image) && (
-              <Avatar
-                className="h-52 w-full rounded-lg text-2xl"
-                imgClassName="object-contain"
-                name={values.name}
-                image={values.image}
+            <div className="space-y-2 p-4">
+              <Field name="name" label="Name" />
+              <Field
+                name="date"
+                label="Date"
+                renderInput={(props, helpers) => (
+                  <DatePicker
+                    id={props.id}
+                    className={props.className}
+                    dateFormat={DATE_FORMAT}
+                    selected={props.value}
+                    onChange={(date: Date) => helpers.setValue(date)}
+                    onBlur={() => helpers.setTouched(true)}
+                  />
+                )}
               />
-            )}
+              <Field
+                name="description"
+                label="Description"
+                renderInput={({ className, ...props }) => (
+                  <textarea {...props} className={`${className} h-full`} />
+                )}
+              />
+              <Field
+                name="image"
+                label="Image"
+                renderInput={props => <input {...props} type="url" />}
+              />
+            </div>
           </div>
-          <div className="sticky bottom-0 flex justify-end space-x-2 border-t border-t-gray-100 bg-white p-3">
-            <button
-              className="flex items-center rounded-md border-2 border-blue-500 px-3 py-2 hover:border-blue-500 hover:bg-blue-500 hover:text-white active:border-blue-600 active:bg-blue-600"
-              disabled={!dirty || !isValid}
-              type="submit"
-            >
-              <Icon className="mr-1" name="save" />
-              Save
-            </button>
-            <button
-              className="flex items-center rounded-md border-2 border-blue-500 px-3 py-2 hover:border-blue-500 hover:bg-blue-500 hover:text-white active:border-blue-600 active:bg-blue-600"
-              disabled={!dirty}
-              type="reset"
-            >
-              <Icon className="mr-1" name="refresh" />
-              Reset
-            </button>
+          <div className="flex justify-end space-x-2 border-t border-t-gray-100 bg-gray-100 p-4">
             {item && (
               <button
-                className="flex items-center rounded-md border-2 border-blue-500 px-3 py-2 hover:border-blue-500 hover:bg-blue-500 hover:text-white active:border-blue-600 active:bg-blue-600"
+                className="flex items-center rounded-md bg-transparent px-4 py-2 text-sm font-semibold uppercase tracking-wider text-teal-900"
                 type="button"
                 onClick={() => {
                   if (window.confirm('Are you sure?')) {
@@ -109,10 +92,26 @@ export default function ItemComponent({
                   }
                 }}
               >
-                <Icon className="mr-1" name="trash" />
+                <Icon className="mr-2 h-4 w-4" name="trash" />
                 Remove
               </button>
             )}
+            <button
+              className="flex items-center rounded-md bg-transparent px-4 py-2 text-sm font-semibold uppercase tracking-wider text-teal-900"
+              disabled={!dirty}
+              type="reset"
+            >
+              <Icon className="mr-2 h-4 w-4" name="refresh" />
+              Reset
+            </button>
+            <button
+              className="flex items-center rounded-md bg-teal-700 px-4 py-2 text-sm font-semibold uppercase tracking-wider text-white"
+              disabled={!dirty || !isValid}
+              type="submit"
+            >
+              <Icon className="mr-2 h-4 w-4" name="save" />
+              Save
+            </button>
           </div>
         </Form>
       )}
