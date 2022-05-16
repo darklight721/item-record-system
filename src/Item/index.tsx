@@ -9,6 +9,9 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 export const DATE_FORMAT = 'MM-dd-yyyy'
 
+export const BUTTON_BASE_STYLE =
+  'flex items-center rounded-md px-4 py-3 text-sm font-semibold uppercase tracking-wider disabled:pointer-events-none disabled:opacity-60'
+
 type Props = {
   getItem?: (id: string) => Item | undefined
   saveItem?: (item: Item) => void
@@ -50,7 +53,7 @@ export default function ItemComponent({
               name={values.name}
               image={values.image}
             />
-            <div className="space-y-2 p-4">
+            <div className="space-y-3 p-4">
               <Field name="name" label="Name" />
               <Field
                 name="date"
@@ -83,7 +86,7 @@ export default function ItemComponent({
           <div className="flex justify-end space-x-2 border-t border-t-gray-100 bg-gray-100 p-4">
             {item && (
               <button
-                className="flex items-center rounded-md bg-transparent px-4 py-2 text-sm font-semibold uppercase tracking-wider text-teal-900"
+                className={`${BUTTON_BASE_STYLE} mr-auto bg-transparent text-red-700 hover:bg-red-700 hover:text-white active:bg-red-800 active:text-white`}
                 type="button"
                 onClick={() => {
                   if (window.confirm('Are you sure?')) {
@@ -97,7 +100,7 @@ export default function ItemComponent({
               </button>
             )}
             <button
-              className="flex items-center rounded-md bg-transparent px-4 py-2 text-sm font-semibold uppercase tracking-wider text-teal-900"
+              className={`${BUTTON_BASE_STYLE} bg-transparent text-teal-900 hover:bg-teal-800 hover:text-white active:bg-teal-900 active:text-white`}
               disabled={!dirty}
               type="reset"
             >
@@ -105,7 +108,7 @@ export default function ItemComponent({
               Reset
             </button>
             <button
-              className="flex items-center rounded-md bg-teal-700 px-4 py-2 text-sm font-semibold uppercase tracking-wider text-white"
+              className={`${BUTTON_BASE_STYLE} bg-teal-700 text-white hover:bg-teal-800 active:bg-teal-900`}
               disabled={!dirty || !isValid}
               type="submit"
             >

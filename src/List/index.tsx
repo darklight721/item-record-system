@@ -3,7 +3,7 @@ import { Link, Navigate, NavLink, useMatch } from 'react-router-dom'
 import sortBy from 'lodash.sortby'
 import { format } from 'date-fns'
 import type { Item } from '../store'
-import { DATE_FORMAT } from '../Item'
+import { DATE_FORMAT, BUTTON_BASE_STYLE } from '../Item'
 import Icon from '../Icon'
 import Avatar from '../Avatar'
 
@@ -23,22 +23,34 @@ export default function List({ items }: Props) {
 
   return (
     <div>
-      <header className="bg-teal-900 p-4">
+      <header className="flex items-center justify-between bg-teal-900 p-4">
         <Link
           to="/"
-          className="flex items-center text-lg font-semibold tracking-wide text-white hover:opacity-80 active:opacity-60"
+          className="flex items-center text-sm font-semibold uppercase tracking-wide text-white hover:opacity-80 active:opacity-60"
         >
-          <Icon className="mr-2" name="collection" />
-          Item Record System
+          <Icon className="mr-3 h-6 w-6" name="collection" />
+          <div className="text-xs">
+            Item
+            <br />
+            Record
+            <br />
+            System
+          </div>
+        </Link>
+        <Link
+          className={`${BUTTON_BASE_STYLE} bg-teal-600 text-white hover:bg-teal-700 active:bg-teal-800`}
+          to="/new"
+        >
+          <Icon name="plus" className="mr-2 h-4 w-4" /> Item
         </Link>
       </header>
-      <div className="sticky top-0 bg-teal-600 p-4">
+      <div className="sticky top-0 z-10 bg-teal-600 p-4">
         <div className="relative">
           <div className="absolute inset-y-0 left-0 z-10 flex items-center pl-3">
             <Icon className="text-teal-900" name="search" />
           </div>
           <input
-            className="w-full rounded-3xl bg-teal-700 py-2 pl-10 pr-3 text-white opacity-90 shadow-inner placeholder:text-white placeholder:opacity-75 focus:opacity-100 focus:outline-teal-600"
+            className="w-full rounded-3xl bg-teal-700 py-2 pl-10 pr-3 text-white shadow-inner placeholder:text-white placeholder:opacity-75 focus:outline-teal-600"
             type="search"
             placeholder="Search items"
             value={filter}

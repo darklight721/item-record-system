@@ -22,7 +22,10 @@ export default function Field({
 
   return (
     <div className="flex">
-      <label className="block w-32 py-2 text-gray-600" htmlFor={name}>
+      <label
+        className="block w-32 py-2 font-semibold text-gray-500"
+        htmlFor={name}
+      >
         {label}
       </label>
       <div className="flex-1">
@@ -30,7 +33,7 @@ export default function Field({
           {
             ...field,
             id: name,
-            className: `w-full py-2 px-3 bg-gray-100 rounded-md shadow-inner ${
+            className: `w-full py-2 px-3 bg-gray-100 rounded-md shadow-inner text-gray-900 ${
               hasError ? 'focus:outline-red-600' : 'focus:outline-teal-600'
             }`
           },
