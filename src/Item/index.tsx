@@ -29,7 +29,7 @@ export default function ItemComponent({
 
   if (itemId && !item)
     return (
-      <div className="flex h-full w-full flex-col items-center justify-center p-3 text-lg">
+      <div className="flex h-full w-full flex-col items-center justify-center p-4 text-lg">
         <Icon name="exclamation" />
         <p>Not found :(</p>
       </div>
@@ -48,6 +48,12 @@ export default function ItemComponent({
       {({ values, dirty, isValid }) => (
         <Form className="flex h-full flex-col">
           <div className="flex-1 overflow-y-auto">
+            <button
+              className="fixed m-4 rounded-full bg-teal-700 p-4 text-white shadow-md hover:bg-teal-800 active:bg-teal-900 md:hidden"
+              type="button"
+            >
+              <Icon name="menu" />
+            </button>
             <Avatar
               className="h-48 w-full text-2xl"
               name={values.name}
@@ -83,7 +89,7 @@ export default function ItemComponent({
               />
             </div>
           </div>
-          <div className="flex justify-end space-x-2 border-t border-t-gray-100 bg-gray-100 p-4">
+          <div className="flex justify-end space-x-2 border-t border-gray-200 bg-gray-100 p-4">
             {item && (
               <button
                 className={`${BUTTON_BASE_STYLE} mr-auto bg-transparent text-red-700 hover:bg-red-700 hover:text-white active:bg-red-800 active:text-white`}
