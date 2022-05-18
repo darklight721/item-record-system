@@ -48,12 +48,6 @@ export default function ItemComponent({
       {({ values, dirty, isValid }) => (
         <Form className="flex h-full flex-col">
           <div className="flex-1 overflow-y-auto">
-            <button
-              className="fixed m-4 rounded-full bg-teal-700 p-4 text-white shadow-md hover:bg-teal-800 active:bg-teal-900 md:hidden"
-              type="button"
-            >
-              <Icon name="menu" />
-            </button>
             <Avatar
               className="h-48 w-full text-2xl"
               name={values.name}

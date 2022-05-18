@@ -22,7 +22,7 @@ export default function List({ items }: Props) {
   const match = useMatch({ path: '/', end: true })
 
   return (
-    <div>
+    <div className="h-full flex-1 overflow-y-auto bg-teal-600">
       <header className="flex items-center justify-between bg-teal-900 p-4">
         <Link
           to="/"
@@ -41,7 +41,7 @@ export default function List({ items }: Props) {
           className={`${BUTTON_BASE_STYLE} bg-teal-600 text-white hover:bg-teal-700 active:bg-teal-800`}
           to="/new"
         >
-          <Icon name="plus" className="mr-2 h-4 w-4" /> Item
+          <Icon name="plus" className="mr-2" /> Item
         </Link>
       </header>
       <div className="sticky top-0 z-10 bg-teal-600 p-4">
