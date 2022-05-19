@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik'
 import DatePicker from 'react-datepicker'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ItemSchema, type Item } from '../store'
+import { ItemSchema, type Item } from '../../store'
 import Icon from '../Icon'
 import Field from '../Field'
 import Avatar from '../Avatar'

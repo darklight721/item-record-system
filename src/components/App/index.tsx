@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Item from '../Item'
 import List from '../List'
 import Icon from '../Icon'
-import { getItems, saveItems } from '../store'
+import { getItems, saveItems } from '../../store'
 
 export default function App() {
   const [items, setItems] = useState(() => getItems())
