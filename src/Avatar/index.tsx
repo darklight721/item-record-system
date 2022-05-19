@@ -34,7 +34,7 @@ export default function Avatar({
       )}
       {!loaded && (
         <div className="flex h-full w-full items-center justify-center font-bold uppercase text-teal-900">
-          {name[0]}
+          {name[0] || '🆕'}
         </div>
       )}
     </div>

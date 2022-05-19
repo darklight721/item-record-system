@@ -50,7 +50,7 @@ export default function List({ items }: Props) {
             <Icon className="text-teal-900" name="search" />
           </div>
           <input
-            className="w-full rounded-3xl bg-teal-700 py-2 pl-10 pr-3 text-white shadow-inner placeholder:text-white placeholder:opacity-75 focus:outline-teal-600"
+            className="w-full rounded-3xl bg-teal-700 py-2 pl-10 pr-3 text-white shadow-inner placeholder:text-white placeholder:opacity-75 focus:outline-none focus:outline-offset-0 focus:outline-white/75"
             type="search"
             placeholder="Search items"
             value={filter}

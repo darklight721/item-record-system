@@ -57,6 +57,7 @@ export default function App() {
                 />
               }
             />
+            <Route path="*" element={null} />
           </Routes>
           <button
             className="fixed top-0 left-0 m-4 rounded-full bg-teal-700 p-4 text-white shadow-md hover:bg-teal-800 active:bg-teal-900 md:hidden"
