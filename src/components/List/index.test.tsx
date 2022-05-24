@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import List from '.'
 import { ItemSchema } from '../../store'
@@ -17,13 +18,10 @@ test('renders list', () => {
 
   let list = screen.getAllByRole('listitem')
   expect(list).toHaveLength(2)
-
   expect(list[0]).toHaveTextContent('IItem 203-12-2022')
   expect(list[1]).toHaveTextContent('NNot item 102-12-2022')
 
-  fireEvent.change(screen.getByPlaceholderText('Search items'), {
-    target: { value: '1' }
-  })
+  userEvent.type(screen.getByPlaceholderText('Search items'), '1')
 
   list = screen.getAllByRole('listitem')
   expect(list).toHaveLength(1)

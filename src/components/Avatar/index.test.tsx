@@ -7,7 +7,7 @@ test('renders initials if image is empty', () => {
   expect(screen.getByText('R')).toBeInTheDocument()
 })
 
-test('renders image if given', async () => {
+test('renders image if given', () => {
   render(<Avatar name="Evan" image="https://placekitten.com/200/300" />)
 
   expect(screen.getByText('E')).toBeInTheDocument()
