@@ -46,7 +46,7 @@ export default function ItemComponent({
       }}
     >
       {({ values, dirty, isValid }) => (
-        <Form className="flex h-full flex-col">
+        <Form className="flex h-full flex-col" name="Item">
           <div className="flex-1 overflow-y-auto">
             <Avatar
               className="h-48 w-full text-2xl"
@@ -62,6 +62,7 @@ export default function ItemComponent({
                   <DatePicker
                     id={props.id}
                     className={props.className}
+                    name={props.name}
                     dateFormat={DATE_FORMAT}
                     selected={props.value}
                     onChange={(date: Date) => helpers.setValue(date)}

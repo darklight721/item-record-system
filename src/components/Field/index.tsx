@@ -40,7 +40,10 @@ export default function Field({
           helpers
         )}
         {hasError && (
-          <div className="mt-1 flex items-start text-sm text-red-500">
+          <div
+            className="mt-1 flex items-start text-sm text-red-500"
+            role="alert"
+          >
             <Icon className="mr-1 flex-shrink-0" name="exclamation" />
             {meta.error}
           </div>
