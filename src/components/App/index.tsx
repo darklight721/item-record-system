@@ -51,8 +51,8 @@ export default function App() {
                       prev.map(i => (i.id === item.id ? item : i))
                     )
                   }
-                  removeItem={item =>
-                    setItems(prev => prev.filter(i => i.id !== item.id))
+                  removeItem={id =>
+                    setItems(prev => prev.filter(i => i.id !== id))
                   }
                 />
               }

@@ -13,9 +13,9 @@ export const BUTTON_BASE_STYLE =
   'flex items-center rounded-md px-4 py-3 text-sm font-semibold uppercase tracking-wider disabled:pointer-events-none disabled:opacity-60'
 
 type Props = {
-  getItem?: (id: string) => Item | undefined
+  getItem?: (id: Item['id']) => Item | undefined
   saveItem?: (item: Item) => void
-  removeItem?: (item: Item) => void
+  removeItem?: (id: Item['id']) => void
 }
 
 export default function ItemComponent({
@@ -46,7 +46,7 @@ export default function ItemComponent({
       }}
     >
       {({ values, dirty, isValid }) => (
-        <Form className="flex h-full flex-col" name="Item">
+        <Form className="flex h-full flex-col">
           <div className="flex-1 overflow-y-auto">
             <Avatar
               className="h-48 w-full text-2xl"
@@ -91,7 +91,7 @@ export default function ItemComponent({
                 type="button"
                 onClick={() => {
                   if (window.confirm('Are you sure?')) {
-                    removeItem?.(item)
+                    removeItem?.(item.id)
                     navigate('/')
                   }
                 }}
