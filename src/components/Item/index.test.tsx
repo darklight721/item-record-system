@@ -78,10 +78,7 @@ test('renders existing item', async () => {
     removeItem: removeItemMock
   })
 
-  const saveButton = screen.getByRole('button', { name: 'Save' })
-  const removeButton = screen.getByRole('button', { name: 'Remove' })
-
-  expect(removeButton).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: 'Remove' })).toBeInTheDocument()
 
   userEvent.clear(screen.getByLabelText('Name'))
   userEvent.clear(screen.getByLabelText('Image'))
@@ -93,7 +90,7 @@ test('renders existing item', async () => {
   )
 
   expect(await screen.findAllByRole('alert')).toHaveLength(2)
-  expect(saveButton).toBeDisabled()
+  expect(screen.getByRole('button', { name: 'Save' })).toBeDisabled()
 
   userEvent.type(screen.getByLabelText('Name'), 'Old item')
   userEvent.clear(screen.getByLabelText('Image'))
@@ -101,7 +98,7 @@ test('renders existing item', async () => {
     expect(screen.queryByRole('alert')).not.toBeInTheDocument()
   )
 
-  userEvent.click(saveButton)
+  userEvent.click(screen.getByRole('button', { name: 'Save' }))
   await waitFor(() =>
     expect(saveItemMock).toHaveBeenCalledWith({
       id: '1',
@@ -113,6 +110,6 @@ test('renders existing item', async () => {
   )
 
   jest.spyOn(window, 'confirm').mockReturnValueOnce(true)
-  userEvent.click(removeButton)
+  userEvent.click(screen.getByRole('button', { name: 'Remove' }))
   await waitFor(() => expect(removeItemMock).toHaveBeenCalledWith('1'))
 })

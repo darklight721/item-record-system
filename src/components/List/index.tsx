@@ -60,7 +60,7 @@ export default function List({ items }: Props) {
       </div>
       <ul className="space-y-1">
         {filteredItems.map(item => (
-          <li key={item.id}>
+          <li key={item.id} aria-label={item.name}>
             <NavLink
               className={({ isActive }) =>
                 `flex items-center space-x-3 px-4 py-2 text-white hover:bg-teal-700 ${
